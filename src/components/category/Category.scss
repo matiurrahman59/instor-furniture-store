@@ -1,0 +1,14 @@
+.category-container {
+  .header-text {
+    font-size: 2.4rem;
+    font-weight: var(--fw-md);
+    color: var(--color-black);
+  }
+}
+
+.categories {
+  margin-top: 2rem;
+  padding-bottom: 10rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
