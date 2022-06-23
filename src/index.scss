@@ -4,9 +4,10 @@
   /* COLOR_VARIABLES */
   --color-white: #fff;
   --color-black: #000;
-  --color-orange: rgba(227, 150, 74, 0.24);
+  --color-orange-bg: rgba(227, 150, 74, 0.24);
+  --color-orange-text: #e3964a;
   --color-red: #f7600e;
-  --color-grey: #3b434c;
+  --color-grey: #f2f2f2;
 
   /* FONT_VARIABLES */
   --regular-font: 'Poppins', sans-serif;
@@ -62,7 +63,8 @@ a:visited {
 
 // UTILITY_CLASSES
 .container {
-  max-width: 115.2rem;
+  max-width: 120rem;
+  padding: 0 2.4rem;
   margin: 0 auto;
 }
 

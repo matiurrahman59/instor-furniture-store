@@ -1,0 +1,26 @@
+.button-container {
+  font-size: 1.6rem;
+  background-color: var(--color-orange-bg);
+  color: var(--color-orange-text);
+  text-transform: capitalize;
+  font-weight: var(--fw-md);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+
+  &.login {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+
+  &.addtocart {
+    padding: 1.5rem;
+
+    position: absolute;
+    top: 50%;
+    right: 2.4rem;
+    transform: translateY(-50%);
+  }
+}

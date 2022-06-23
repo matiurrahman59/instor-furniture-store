@@ -17,7 +17,7 @@ const Navigation = () => {
         </Link>
         <form className='search-field'>
           <span className='search-field-icon'>
-            <SearchIcon />
+            <SearchIcon fill='rgba(0, 0, 0, 0.36)' />
           </span>
           <input
             type='text'

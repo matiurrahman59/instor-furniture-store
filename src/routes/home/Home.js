@@ -4,6 +4,7 @@ import Slider from '../../components/slider/Slider';
 import Category from '../../components/category/Category';
 
 import './home.scss';
+import Footer from '../../components/footer/Footer';
 
 const products = [
   {
@@ -41,6 +42,7 @@ const home = () => {
         </div>
       </section>
       <Category />
+      <Footer />
     </>
   );
 };
