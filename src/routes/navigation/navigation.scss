@@ -20,10 +20,10 @@
   }
 
   .cart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2rem;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // gap: 1.2rem;
     background: var(--color-orange-bg);
     color: var(--color-orange-text);
     padding: 1rem;
@@ -35,8 +35,9 @@
     }
   }
   .btn {
+    display: block;
     font-weight: var(--fw-md);
-    padding: 1.2rem;
+    padding: 5px 1.2rem;
     background: var(--color-black);
     color: var(--color-white);
     border-radius: 8px;

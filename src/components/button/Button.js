@@ -2,7 +2,7 @@ import './Button.scss';
 
 const BUTTON_TYPE_CLASSES = {
   addtocart: 'addtocart',
-  // login: 'login',
+  login: 'login',
   // logout: 'logout',
   // checkout: checkout,
 };

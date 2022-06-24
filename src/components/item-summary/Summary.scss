@@ -1,0 +1,19 @@
+.item-summary-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: var(--fw-md);
+  }
+
+  .product-cost,
+  .delevery-cost,
+  .total-cost {
+    display: flex;
+    justify-content: space-between;
+
+    color: #969696;
+  }
+}

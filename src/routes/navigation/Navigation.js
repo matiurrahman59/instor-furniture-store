@@ -1,14 +1,18 @@
 import React from 'react';
 
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as InstorLogo } from '../../assets/icons/Logo.svg';
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
 import { ReactComponent as CartIcon } from '../../assets/icons/cart.svg';
 
+import Button from '../../components/button/Button';
+
 import './navigation.scss';
 
 const Navigation = () => {
+  const navigate = useNavigate();
+
   return (
     <div className='container'>
       <header className='header'>
@@ -26,13 +30,14 @@ const Navigation = () => {
           />
         </form>
         <div className='header__right-item'>
-          <div className='cart'>
-            <span className='cart__icon'>
-              <CartIcon fill='#e3964a' />
-            </span>
-            <span>cart</span>
-          </div>
-          <button className='btn'>Log in/Sign Up</button>
+          <Button
+            className='button-container cart'
+            onClick={() => navigate('checkout')}
+          >
+            <CartIcon fill='#e3964a' />
+            Cart
+          </Button>
+          <Button className='button-container login'>Sign Up</Button>
         </div>
       </header>
       <Outlet />
