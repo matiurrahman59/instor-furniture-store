@@ -33,4 +33,10 @@
       margin-right: 10px;
     }
   }
+
+  &.checkout {
+    padding: 1.2rem 0;
+    background-color: var(--color-orange-bg);
+    color: var(--color-orange-text);
+  }
 }

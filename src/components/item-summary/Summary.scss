@@ -13,7 +13,29 @@
   .total-cost {
     display: flex;
     justify-content: space-between;
-
     color: #969696;
+  }
+
+  .total-cost {
+    span {
+      color: var(--color-black);
+    }
+
+    .totalPrice {
+      font-weight: var(--fw-md);
+    }
+  }
+
+  .coupon-form {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+
+    input {
+      padding: 1rem 0 1rem 1.3rem;
+      border: 1px solid #969696;
+      border-radius: 8px;
+      outline: none;
+    }
   }
 }

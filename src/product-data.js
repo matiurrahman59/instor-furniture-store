@@ -335,7 +335,7 @@ const PRODUCT_DATA = {
       id: 21,
       name: 'Standing Desk',
       imageUrl:
-        'https://www.furniturebox.co.uk/media/catalog/product/cache/e6f73c9c56e48c253d4a516a242fbc14/c/a/cambridge_desk.jpg',
+        'https://www.vari.com/dw/image/v2/BDFT_PRD/on/demandware.static/-/Sites-vari-master-catalog/default/dw980746dc/images/large/DC-PP36/42431-black/vari-desktop-converter_42431_black_raised.jpg?sw=800&sh=800',
       price: 499,
       code: 23904,
     },

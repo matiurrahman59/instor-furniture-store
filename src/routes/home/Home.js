@@ -9,7 +9,7 @@ import './home.scss';
 
 const home = () => {
   return (
-    <>
+    <main className='container'>
       <section className='banner__area'>
         <h1 className='banner-text'>
           Explore what <br /> your home needs
@@ -19,7 +19,7 @@ const home = () => {
       <Category />
       <Offer />
       <Footer />
-    </>
+    </main>
   );
 };
 

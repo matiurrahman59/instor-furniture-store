@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 
@@ -7,11 +7,19 @@ import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
 import { ReactComponent as CartIcon } from '../../assets/icons/cart.svg';
 
 import Button from '../../components/button/Button';
+import LogIn from '../../components/modal/LogIn';
+import SignUp from '../../components/modal/SignUp';
 
 import './navigation.scss';
 
 const Navigation = () => {
+  const [isSignInModalOpen, setSignInModalOpen] = useState(false);
+  const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
+
   const navigate = useNavigate();
+
+  const SignInModal = () => setSignInModalOpen(!isSignInModalOpen);
+  const SignUpModal = () => setSignUpModalOpen(!isSignUpModalOpen);
 
   return (
     <div className='container'>
@@ -37,8 +45,19 @@ const Navigation = () => {
             <CartIcon fill='#e3964a' />
             Cart
           </Button>
-          <Button className='button-container login'>Sign Up</Button>
+          <Button className='button-container login' onClick={SignInModal}>
+            Sign In/Sign Up
+          </Button>
         </div>
+        {isSignInModalOpen && (
+          <LogIn
+            closeModal={SignInModal}
+            setSignInModalOpen={setSignInModalOpen}
+            isSignUpModalOpen={isSignInModalOpen}
+            setSignUpModalOpen={setSignUpModalOpen}
+          />
+        )}
+        {isSignUpModalOpen && <SignUp closeModal={SignUpModal} />}
       </header>
       <Outlet />
     </div>

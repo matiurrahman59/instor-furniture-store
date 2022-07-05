@@ -29,14 +29,14 @@ const categories = [
 
 const category = () => {
   return (
-    <div className='category-container'>
+    <section className='category-container'>
       <h1 className='header-text'>Categories</h1>
       <div className='categories'>
         {categories.map((category) => {
           return <CategoryItem key={category.id} category={category} />;
         })}
       </div>
-    </div>
+    </section>
   );
 };
 
