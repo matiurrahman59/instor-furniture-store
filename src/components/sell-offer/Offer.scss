@@ -10,6 +10,10 @@
   display: flex;
   align-items: center;
 
+  @media only screen and (max-width: 26.5625em) {
+    height: 118px;
+  }
+
   .offer-text {
     display: flex;
     flex-direction: column;
@@ -20,6 +24,9 @@
     color: var(--color-black);
     font-size: 4.8rem;
     font-weight: var(--fw-bold);
+    @media only screen and (max-width: 26.5625em) {
+      font-size: 2.4rem;
+    }
   }
   .offer-amount {
     font-size: 2.4rem;

@@ -77,5 +77,24 @@
         color: #969696;
       }
     }
+
+    .footer {
+      display: flex;
+      font-size: 1.4rem;
+
+      .forgot-password {
+        margin-left: auto;
+      }
+
+      .login,
+      .forgot-password {
+        color: var(--color-orange-text);
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }

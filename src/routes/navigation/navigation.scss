@@ -18,12 +18,14 @@
   .cart {
     background: var(--color-orange-bg);
     color: var(--color-orange-text);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-radius: 8px;
     cursor: pointer;
+    position: relative;
 
     span {
-      font-weight: var(--fw-md);
+      margin-top: -15px;
+      margin-left: 5px;
     }
   }
   .btn {
@@ -42,13 +44,24 @@
   flex: 0 0 65%;
   align-items: center;
   justify-content: center;
-  position: relative;
+  @media only screen and (max-width: 64em) {
+    flex: 0 0 55%;
+  }
+
+  @media only screen and (max-width: 48em) {
+    flex: 0 0 50%;
+    // display: none;
+  }
+
+  @media only screen and (max-width: 43.75em) {
+    display: none;
+  }
 
   &-icon {
-    position: absolute;
     width: 1.85rem;
-    left: 1.5rem;
-    top: 1.2rem;
+    margin-top: 0.8rem;
+    margin-right: -3rem;
+    z-index: 99;
   }
 
   &__input {

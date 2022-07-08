@@ -1,20 +1,36 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+
+import { Link } from 'react-router-dom';
+
 import CheckOutItem from '../../components/checkout-item/CheckOutItem';
 
 import { CartContext } from '../../contexts/cart-context';
 
 import Summary from '../../components/item-summary/Summary';
 
+import { ReactComponent as CartIcon } from '../../assets/icons/cart-regular.svg';
+
 import './CheckOut.scss';
 
 const CheckOut = () => {
-  const [itemAdded, setItemAdded] = useState(false);
+  // const [itemAdded, setItemAdded] = useState(false);
   const { cartItems } = useContext(CartContext);
 
   return (
     <div className='checkout-container'>
       <div className='checkout-items-container'>
-        {!itemAdded && <p>No item added</p>}
+        {!cartItems.length && (
+          <div className='empty-cart-container'>
+            <CartIcon fill='#000' height='46px' width='46px' />
+            <span className='header-text'>Cart is Empty</span>
+            <span className='sub-text'>
+              Looks like you haven't added <br /> anything to your cart yet{' '}
+            </span>
+            <Link to='/' className='navigate'>
+              Back to Homepage
+            </Link>
+          </div>
+        )}
         {cartItems.map((cartItem) => (
           <CheckOutItem key={cartItem.id} cartItem={cartItem} />
         ))}

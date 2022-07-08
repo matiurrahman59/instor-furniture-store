@@ -5,7 +5,12 @@ import Button from '../button/Button';
 
 import './SignUp.scss';
 
-const SignUp = ({ closeModal }) => {
+const SignUp = ({ closeModal, setSignInModalOpen, setSignUpModalOpen }) => {
+  const onClick = () => {
+    setSignInModalOpen(true);
+    setSignUpModalOpen(false);
+  };
+
   return (
     <div className='modal'>
       <div className='modal-body'>
@@ -41,6 +46,15 @@ const SignUp = ({ closeModal }) => {
           />
           <Button className='sign-up'>Sign Up</Button>
         </form>
+        <div className='footer'>
+          <span>
+            Have an account?{' '}
+            <span className='login' onClick={onClick}>
+              Log in
+            </span>
+          </span>
+          <span className='forgot-password'>Forgot password</span>
+        </div>
       </div>
     </div>
   );

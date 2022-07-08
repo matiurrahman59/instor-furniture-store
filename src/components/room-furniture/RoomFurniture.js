@@ -1,39 +1,66 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import './RoomFurniture.scss';
 
-const categories = [
+const furnitures = [
   {
     id: 1,
     title: 'Living Room',
     imageUrl:
-      'https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGl2aW5nJTIwcm9vbSUyMGZ1cm5pdHVyZXxlbnwwfHwwfHw%3D&w=1000&q=80',
+      'https://media.designcafe.com/wp-content/uploads/2019/12/17054440/living-room-furniture-design-for-your-home.jpg',
   },
   {
     id: 2,
     title: 'Bed Room',
     imageUrl:
-      'https://media.designcafe.com/wp-content/uploads/2019/12/21000333/indian-bedroom-furniture-designs.jpg',
+      'https://s3.amazonaws.com/swatchpop-prod/blog-tmp/how-to-mix-match-bedroom-furniture/img2.jpg',
   },
   {
     id: 3,
     title: 'Dining Room',
     imageUrl:
-      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/dining-room-ideas-1252-005-1621977481.jpg?crop=0.655xw:1.00xh;0.120xw,0&resize=640:*',
+      'https://empire-s3-production.bobvila.com/slides/29674/original/contemporary-dining-room-decorating-ideas.jpg?1546271328',
   },
   {
     id: 4,
-    title: 'office Room',
+    title: 'Office Room',
     imageUrl:
-      'http://bokefurniture.com/wp-content/uploads/2020/09/604-%E6%A1%88%E4%BE%8B.png',
+      'https://img.freepik.com/free-photo/contemporary-spacious-office-room-interior-with-city-view-daylight-workplace-design-concept-with-carpet-floor-office-furniture-meeting-room-living-area-reception-hall-white-3d-rendering_156429-3211.jpg?w=2000',
   },
 ];
 
 const RoomFurniture = () => {
+  const navigate = useNavigate();
+
+  const navigateHandler = () => navigate('/product/chairs');
+
   return (
-    <section className='RoomFurniture'>
+    <section className='room-furniture'>
       <h1 className='header-text'>Rooms</h1>
-      <p className='sub-text'>Furniture for every corners in your home</p>.
+      <p className='sub-text'>Furniture for every corners in your home</p>
+      <div className='furniture-container'>
+        {furnitures.map(({ id, title, imageUrl }) => {
+          const [title1, title2] = title.split(' ');
+
+          return (
+            <div
+              key={id}
+              className='furniture-type'
+              style={{
+                backgroundImage: `url(${imageUrl})`,
+              }}
+              onClick={navigateHandler}
+            >
+              <div className='title'>
+                <span className='type-name'>{title1}</span> <br />
+                <span className='type-name'>{title2}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };

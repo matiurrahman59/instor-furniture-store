@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as InstorLogo } from '../../assets/icons/Logo.svg';
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
 import { ReactComponent as CartIcon } from '../../assets/icons/cart.svg';
+
+import { CartContext } from '../../contexts/cart-context';
 
 import Button from '../../components/button/Button';
 import LogIn from '../../components/modal/LogIn';
@@ -17,6 +19,8 @@ const Navigation = () => {
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  const { cartCount } = useContext(CartContext);
 
   const SignInModal = () => setSignInModalOpen(!isSignInModalOpen);
   const SignUpModal = () => setSignUpModalOpen(!isSignUpModalOpen);
@@ -43,7 +47,7 @@ const Navigation = () => {
             onClick={() => navigate('checkout')}
           >
             <CartIcon fill='#e3964a' />
-            Cart
+            {cartCount > 0 && <span>{cartCount}</span>}
           </Button>
           <Button className='button-container login' onClick={SignInModal}>
             Sign In/Sign Up
@@ -57,7 +61,13 @@ const Navigation = () => {
             setSignUpModalOpen={setSignUpModalOpen}
           />
         )}
-        {isSignUpModalOpen && <SignUp closeModal={SignUpModal} />}
+        {isSignUpModalOpen && (
+          <SignUp
+            closeModal={SignUpModal}
+            setSignInModalOpen={setSignInModalOpen}
+            setSignUpModalOpen={setSignUpModalOpen}
+          />
+        )}
       </header>
       <Outlet />
     </div>

@@ -15,7 +15,7 @@ const categories = [
     id: 2,
     title: 'sofas',
     imageUrl:
-      'https://www.ikea.com/in/en/images/products/friheten-corner-sofa-bed-with-storage-skiftebo-dark-grey__0779005_ph163058_s5.jpg?f=s',
+      'https://okl.scene7.com/is/image/OKL/091916_sofa_Lead?wid=1000&op_sharpen=1',
     route: 'product/sofas',
   },
   {

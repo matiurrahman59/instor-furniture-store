@@ -7,7 +7,7 @@ import './Summary.scss';
 
 const Summary = ({ price }) => {
   const { cartTotal } = useContext(CartContext);
-  const dCharge = 10;
+  const dCharge = cartTotal ? 10 : 0;
   const totalPrice = cartTotal + dCharge;
 
   return (

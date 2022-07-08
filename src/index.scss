@@ -16,11 +16,11 @@
   --fw-bold: 700;
 }
 
-/* // RESPONSIVE BREAKPOINTS
-$bp-large: 62.5em; // 1000px
+// RESPONSIVE BREAKPOINTS
+$bp-large: 75em; // 1200px
 $bp-medium: 48em; //768px
 $bp-small: 37.5em; // 600px
-$bp-smalest: 26.5625em; // 425 */
+$bp-smalest: 26.5625em; // 425
 
 *,
 *::after,
@@ -34,6 +34,13 @@ html {
   box-sizing: border-box;
   /* This defines what 1rem is */
   font-size: 62.5%; /*1 rem = 10px; 10px/16px = 62.5%*/
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 56%;
+  }
+  @media only screen and (max-width: $bp-smalest) {
+    font-size: 50% !important;
+  }
 }
 
 body {
@@ -65,8 +72,12 @@ a:visited {
 .container {
   max-width: 120rem;
   margin: 0 auto;
-}
+  padding: 0 2.4rem;
 
-/* @media only screen and (max-width: $bp-medium) {
-    font-size: 55% !important;
-  } */
+  @media only screen and (max-width: $bp-large) {
+    padding: 0 2rem;
+  }
+  @media only screen and (max-width: $bp-smalest) {
+    padding: 0 1.6rem;
+  }
+}

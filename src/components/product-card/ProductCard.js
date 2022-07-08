@@ -14,7 +14,14 @@ const ProductCard = ({ product }) => {
   const addProductToCart = () => addItemToCart(product);
   return (
     <div className='productCard-item'>
-      <img src={imageUrl} className='product__img' alt={name} />
+      <div
+        className='productCard-item-img'
+        style={{
+          backgroundImage: `url(${imageUrl})`,
+        }}
+      >
+        {/* <img src={imageUrl} className='product__img' alt={name} /> */}
+      </div>
       <div className='product-item-details'>
         <span className='item-name'>{name}</span>
         <span className='item-price'>${price}</span>

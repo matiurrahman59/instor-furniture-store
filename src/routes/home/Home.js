@@ -6,10 +6,11 @@ import Footer from '../../components/footer/Footer';
 import Offer from '../../components/sell-offer/Offer';
 
 import './home.scss';
+import RoomFurniture from '../../components/room-furniture/RoomFurniture';
 
 const home = () => {
   return (
-    <main className='container'>
+    <main>
       <section className='banner__area'>
         <h1 className='banner-text'>
           Explore what <br /> your home needs
@@ -18,6 +19,7 @@ const home = () => {
       </section>
       <Category />
       <Offer />
+      <RoomFurniture />
       <Footer />
     </main>
   );
