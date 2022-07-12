@@ -6,8 +6,6 @@ import { CategoriesContext } from '../../contexts/categories-context';
 
 import categories from '../../categories';
 
-import ProductData from '../../ProductData.js';
-
 import { ReactComponent as LeftArrow } from '../../assets/icons/left-arrow.svg';
 
 import ProductCard from '../../components/product-card/ProductCard';
