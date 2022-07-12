@@ -1,24 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
-import PRODUCT_DATA from '../../product-data';
+
+import { CategoriesContext } from '../../contexts/categories-context';
+
+import categories from '../../categories';
+
+import ProductData from '../../ProductData.js';
 
 import { ReactComponent as LeftArrow } from '../../assets/icons/left-arrow.svg';
 
-import './Product.scss';
 import ProductCard from '../../components/product-card/ProductCard';
 import Offer from '../../components/sell-offer/Offer';
 import Footer from '../../components/footer/Footer';
 
+import './Product.scss';
+
 const Product = () => {
   const { productItem } = useParams();
-  const titleimage = `${productItem}TitleImg`;
+  const { categoriesMap } = useContext(CategoriesContext);
+  const [products, setProducts] = useState(categoriesMap[productItem]);
+
+  useEffect(() => {
+    setProducts(categoriesMap[productItem]);
+  }, [productItem, categoriesMap]);
+
+  let imageUrl;
+  categories.map((category) => {
+    if (productItem === category.title) {
+      imageUrl = category.imageUrl;
+    }
+    return imageUrl;
+  });
+
   return (
     <div className='product-page-container'>
       <div
         className='product-page-header'
         style={{
-          backgroundImage: `url(${PRODUCT_DATA[titleimage]})`,
+          backgroundImage: `url(${imageUrl}})`,
         }}
       >
         <div className='product-page-body'>
@@ -29,9 +49,10 @@ const Product = () => {
         </div>
       </div>
       <div className='product-card-contianer'>
-        {PRODUCT_DATA[productItem].map((product) => {
-          return <ProductCard key={product.id} product={product} />;
-        })}
+        {products &&
+          products.map((product) => {
+            return <ProductCard key={product.id} product={product} />;
+          })}
       </div>
       <Offer />
       <Footer />

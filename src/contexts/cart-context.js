@@ -114,7 +114,6 @@ export const CartProvider = ({ children }) => {
   };
 
   const addItemToCart = (productToAdd) => {
-    console.log(productToAdd);
     const newCartItems = addCartItem(cartItems, productToAdd);
     updateCartItemsReducer(newCartItems);
   };

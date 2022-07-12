@@ -19,9 +19,7 @@ const ProductCard = ({ product }) => {
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
-      >
-        {/* <img src={imageUrl} className='product__img' alt={name} /> */}
-      </div>
+      ></div>
       <div className='product-item-details'>
         <span className='item-name'>{name}</span>
         <span className='item-price'>${price}</span>
