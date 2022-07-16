@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { CartContext } from '../../contexts/cart-context';
 import Button from '../button/Button';
 
 import './Summary.scss';
 
 const Summary = ({ price }) => {
-  const { cartTotal } = useContext(CartContext);
-  const dCharge = cartTotal ? 10 : 0;
+  const cartTotal = useSelector((state) => state.cart.totalPrice);
+
+  const dCharge = cartTotal > 0 ? 10 : 0;
   const totalPrice = cartTotal + dCharge;
 
   return (

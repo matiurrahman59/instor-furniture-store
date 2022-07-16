@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 
-import { CartContext } from '../../contexts/cart-context';
+import { useSelector } from 'react-redux';
+
 import { UserContext } from '../../contexts/user-context';
 
 import { signOutUser } from '../../utils/firebase/FirebaseUtils';
@@ -21,10 +21,10 @@ const Navigation = () => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
 
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const navigate = useNavigate();
 
   const { currentUser } = useContext(UserContext);
-  const { cartCount } = useContext(CartContext);
 
   const SignInModal = () => setSignInModalOpen(!isSignInModalOpen);
   const SignUpModal = () => setSignUpModalOpen(!isSignUpModalOpen);
@@ -51,7 +51,7 @@ const Navigation = () => {
             onClick={() => navigate('checkout')}
           >
             <CartIcon fill='#e3964a' />
-            {cartCount > 0 && <span>{cartCount}</span>}
+            {totalQuantity > 0 && <span>{totalQuantity}</span>}
           </Button>
           {currentUser ? (
             <Button className='button-container login' onClick={signOutUser}>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 
+import { useSelector } from 'react-redux';
+
 import { Link, useParams } from 'react-router-dom';
 
-import { CategoriesContext } from '../../contexts/categories-context';
+// import { CategoriesContext } from '../../contexts/categories-context';
 
 import categories from '../../categories';
 
@@ -16,7 +18,9 @@ import './Product.scss';
 
 const Product = () => {
   const { productItem } = useParams();
-  const { categoriesMap } = useContext(CategoriesContext);
+
+  const categoriesMap = useSelector((state) => state.category.categoriesMap);
+
   const [products, setProducts] = useState(categoriesMap[productItem]);
 
   useEffect(() => {

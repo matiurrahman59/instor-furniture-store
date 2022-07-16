@@ -1,20 +1,16 @@
 import React, { useContext } from 'react';
-
 import { Link } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
+
 import CheckOutItem from '../../components/checkout-item/CheckOutItem';
-
-import { CartContext } from '../../contexts/cart-context';
-
 import Summary from '../../components/item-summary/Summary';
-
 import { ReactComponent as CartIcon } from '../../assets/icons/cart-regular.svg';
 
 import './CheckOut.scss';
 
 const CheckOut = () => {
-  // const [itemAdded, setItemAdded] = useState(false);
-  const { cartItems } = useContext(CartContext);
+  const cartItems = useSelector((state) => state.cart.items);
 
   return (
     <div className='checkout-container'>
