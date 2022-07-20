@@ -1,20 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// const updateCartItems = (items) => {
-//   const newQuantity = items.reduce(
-//     (total, cartItem) => total + cartItem.quantity,
-//     0
-//   );
-//   const newTotal = items.reduce(
-//     (total, cartItem) => total + cartItem.quantity * cartItem.price,
-//     0
-//   );
-//   return {
-//     newQuantity,
-//     newTotal,
-//   };
-// };
-
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -35,14 +20,6 @@ const cartSlice = createSlice({
         existingItem.quantity++;
         existingItem.totalPrice = existingItem.totalPrice + newItem.price;
       }
-
-      ////////////////////// not working
-      // const { totalQuantity, totalPrice } = updateCartItems(state.items);
-      // console.log(totalQuantity, totalPrice);
-      // state.totalQuantity = totalQuantity;
-      // state.totalPrice = totalPrice;
-      ///////////////////////////////////
-
       // update cartItems
       state.totalQuantity = state.items.reduce(
         (total, item) => total + item.quantity,

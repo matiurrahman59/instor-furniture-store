@@ -1,0 +1,26 @@
+.notification {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 100%;
+  border-width: 2px;
+  border-style: solid;
+  border-image: initial;
+  display: inline-block;
+  animation: spinners 0.75s linear infinite;
+}
+
+.yellow {
+  border-color: rgb(227, 150, 74) rgb(227, 150, 74) transparent;
+}
+.white {
+  border-color: rgb(255, 255, 255) rgb(255, 255, 255) transparent;
+}
+
+@keyframes spinners {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

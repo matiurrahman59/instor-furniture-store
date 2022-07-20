@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 
-import {
-  signInWithGooglePopup,
-  signInAuthUserWithEmailAndPassword,
-} from '../../utils/firebase/FirebaseUtils';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { signIn } from '../../store/user.action.js';
+import { uiActions } from '../../store/ui-slice.js';
+
+import { signInWithGooglePopup } from '../../utils/firebase/FirebaseUtils';
+
+import Notification from '../UI/Notification.js';
 import { ReactComponent as LeftArrow } from '../../assets/icons/left-arrow.svg';
 import { ReactComponent as GoogleIcon } from '../../assets/icons/google-icon.svg';
 import Button from '../button/Button';
@@ -16,9 +19,21 @@ const defaultFormFields = {
   password: '',
 };
 
-const LogIn = ({ closeModal, setSignInModalOpen, setSignUpModalOpen }) => {
+const LogIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const borderColor = 'yellow';
+
+  const dispatch = useDispatch();
+  const showSpinner = useSelector((state) => state.ui.isLoading);
+
+  const setformStatus = () => {
+    dispatch(uiActions.toggleSignInFormStatus());
+  };
+  const setSignUpformVisible = () => {
+    dispatch(uiActions.toggleSignInFormStatus());
+    dispatch(uiActions.toggleSignUpFormStatus());
+  };
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -31,41 +46,20 @@ const LogIn = ({ closeModal, setSignInModalOpen, setSignUpModalOpen }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      await signInAuthUserWithEmailAndPassword(email, password);
-
-      resetFormFields();
-      closeModal();
-    } catch (error) {
-      switch (error.code) {
-        case 'auth/user-not-found':
-          alert('no user with this email');
-          break;
-        case 'auth/wrong-password':
-          alert('incorrect password for email');
-          break;
-        default:
-          console.log(error);
-      }
-    }
-  };
-
-  const onClick = () => {
-    setSignInModalOpen(false);
-    setSignUpModalOpen(true);
+    dispatch(signIn(email, password));
+    resetFormFields();
   };
 
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
-    closeModal();
+    dispatch(uiActions.toggleSignInFormStatus());
   };
 
   return (
     <div className='modal'>
       <div className='modal-body'>
         <div className='modal-header'>
-          <span className='link' onClick={closeModal}>
+          <span onClick={setformStatus} className='link'>
             <LeftArrow fill='#000' />
           </span>
           Log In
@@ -93,10 +87,23 @@ const LogIn = ({ closeModal, setSignInModalOpen, setSignUpModalOpen }) => {
           <Button onClick={signInWithGoogle} type='button'>
             <GoogleIcon width='40px' height='40px' />
           </Button>
-          <Button type='submit' className='log-in'>
-            Log In
+          <Button
+            type='submit'
+            className='log-in'
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {!showSpinner && 'Log In'}
+            {showSpinner && <Notification borderColor={borderColor} />}
           </Button>
-          <Button type='button' className='sign-up' onClick={onClick}>
+          <Button
+            onClick={setSignUpformVisible}
+            type='button'
+            className='sign-up'
+          >
             Sign Up
           </Button>
           <span>Forgot password</span>

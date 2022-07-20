@@ -1,9 +1,15 @@
-import React, { useState, useContext } from 'react';
-import { Outlet, Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import {
+  Outlet,
+  Link,
+  useNavigate,
+  useParams,
+  useLocation,
+} from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { UserContext } from '../../contexts/user-context';
+import { userActions } from '../../store/user.slice';
 
 import { signOutUser } from '../../utils/firebase/FirebaseUtils';
 
@@ -13,21 +19,32 @@ import { ReactComponent as CartIcon } from '../../assets/icons/cart.svg';
 
 import Button from '../../components/button/Button';
 import LogIn from '../../components/authentication/LogIn';
-import SignUp from '../../components/authentication/SignUp';
 
 import './navigation.scss';
+import { uiActions } from '../../store/ui-slice';
+import SignUp from '../../components/authentication/SignUp';
 
 const Navigation = () => {
-  const [isSignInModalOpen, setSignInModalOpen] = useState(false);
-  const [isSignUpModalOpen, setSignUpModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-  const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const isSignInFormVisible = useSelector(
+    (state) => state.ui.isSignInFormVisible
+  );
+  const isSignUpFormVisible = useSelector(
+    (state) => state.ui.isSignUpFormVisible
+  );
 
-  const { currentUser } = useContext(UserContext);
+  const setformVisible = () => {
+    dispatch(uiActions.toggleSignInFormStatus());
+  };
 
-  const SignInModal = () => setSignInModalOpen(!isSignInModalOpen);
-  const SignUpModal = () => setSignUpModalOpen(!isSignUpModalOpen);
+  const signOut = () => {
+    signOutUser();
+    dispatch(userActions.logOut());
+  };
 
   return (
     <div className='container'>
@@ -54,30 +71,17 @@ const Navigation = () => {
             {totalQuantity > 0 && <span>{totalQuantity}</span>}
           </Button>
           {currentUser ? (
-            <Button className='button-container login' onClick={signOutUser}>
+            <Button className='button-container login' onClick={signOut}>
               Sign Out
             </Button>
           ) : (
-            <Button className='button-container login' onClick={SignInModal}>
+            <Button onClick={setformVisible} className='button-container login'>
               Sign In/Sign Up
             </Button>
           )}
         </div>
-        {isSignInModalOpen && (
-          <LogIn
-            closeModal={SignInModal}
-            setSignInModalOpen={setSignInModalOpen}
-            isSignUpModalOpen={isSignInModalOpen}
-            setSignUpModalOpen={setSignUpModalOpen}
-          />
-        )}
-        {isSignUpModalOpen && (
-          <SignUp
-            closeModal={SignUpModal}
-            setSignInModalOpen={setSignInModalOpen}
-            setSignUpModalOpen={setSignUpModalOpen}
-          />
-        )}
+        {isSignInFormVisible && <LogIn />}
+        {isSignUpFormVisible && <SignUp />}
       </header>
       <Outlet />
     </div>

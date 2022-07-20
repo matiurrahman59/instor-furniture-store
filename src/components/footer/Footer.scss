@@ -32,5 +32,9 @@
     background-color: #969696;
     border-radius: 100px;
     cursor: pointer;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
 }

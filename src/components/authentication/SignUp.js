@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from '../../utils/firebase/FirebaseUtils';
+import { signUp } from '../../store/user.action';
+import { uiActions } from '../../store/ui-slice';
 
 import { ReactComponent as LeftArrow } from '../../assets/icons/left-arrow.svg';
 import Button from '../button/Button';
+import Notification from '../UI/Notification';
 
 import './SignUp.scss';
 
@@ -17,12 +17,25 @@ const defaultFormFields = {
   confirmPassword: '',
 };
 
-const SignUp = ({ closeModal, setSignInModalOpen, setSignUpModalOpen }) => {
+const SignUp = () => {
+  const dispatch = useDispatch();
+  const showSpinner = useSelector((state) => state.ui.isLoading);
+
+  const borderColor = 'white';
+
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
-
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
+  };
+
+  const setformStatus = () => {
+    dispatch(uiActions.toggleSignUpFormStatus());
+  };
+
+  const setSignInformVisible = () => {
+    dispatch(uiActions.toggleSignUpFormStatus());
+    dispatch(uiActions.toggleSignInFormStatus());
   };
 
   const handleChange = (event) => {
@@ -30,47 +43,27 @@ const SignUp = ({ closeModal, setSignInModalOpen, setSignUpModalOpen }) => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const onClick = () => {
-    setSignInModalOpen(true);
-    setSignUpModalOpen(false);
-  };
-
-  const onSubmit = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-
     if (password !== confirmPassword) {
       alert('Password do not match');
       return;
     }
 
-    try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      await createUserDocumentFromAuth(user, { displayName });
-      resetFormFields();
-      closeModal();
-    } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
-        alert('Cannot create user, email already in use');
-      } else if (error.code === 'auth/invalid-email') {
-        alert('Cannot create user, email invalid');
-      } else console.log('something went wrong', error);
-    }
+    dispatch(signUp(email, password, displayName));
+    resetFormFields();
   };
 
   return (
     <div className='modal'>
       <div className='modal-body'>
         <div className='modal-header'>
-          <span className='link' onClick={closeModal}>
+          <span onClick={setformStatus} className='link'>
             <LeftArrow fill='#000' />
           </span>
           Sign Up
         </div>
-        <form onSubmit={onSubmit} className='signup-form'>
+        <form onSubmit={submitHandler} className='signup-form'>
           <input
             type='text'
             className='name-input'
@@ -110,13 +103,14 @@ const SignUp = ({ closeModal, setSignInModalOpen, setSignUpModalOpen }) => {
             required
           />
           <Button type='submit' className='sign-up'>
-            Sign Up
+            {!showSpinner && 'Sign Up'}
+            {showSpinner && <Notification borderColor={borderColor} />}
           </Button>
         </form>
         <div className='footer'>
           <span>
             Have an account?{' '}
-            <span className='login' onClick={onClick}>
+            <span onClick={setSignInformVisible} className='login'>
               Log in
             </span>
           </span>
