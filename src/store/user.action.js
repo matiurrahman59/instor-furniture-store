@@ -11,6 +11,8 @@ export const signIn = (email, password) => {
     dispatch(uiActions.showNotification());
     try {
       await signInAuthUserWithEmailAndPassword(email, password);
+      dispatch(uiActions.showNotification());
+      dispatch(uiActions.toggleSignInFormStatus());
     } catch (error) {
       switch (error.code) {
         case 'auth/user-not-found':
@@ -22,9 +24,8 @@ export const signIn = (email, password) => {
         default:
           console.log(error);
       }
+      dispatch(uiActions.showNotification());
     }
-    dispatch(uiActions.showNotification());
-    dispatch(uiActions.toggleSignInFormStatus());
   };
 };
 
@@ -37,14 +38,15 @@ export const signUp = (email, password, displayName) => {
         password
       );
       await createUserDocumentFromAuth(user, { displayName });
+      dispatch(uiActions.showNotification());
+      dispatch(uiActions.toggleSignUpFormStatus());
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         alert('Cannot create user, email already in use');
       } else if (error.code === 'auth/invalid-email') {
         alert('Cannot create user, email invalid');
       } else console.log('something went wrong', error);
+      dispatch(uiActions.showNotification());
     }
-    dispatch(uiActions.showNotification());
-    dispatch(uiActions.toggleSignUpFormStatus());
   };
 };
