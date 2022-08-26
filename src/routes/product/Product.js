@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -36,29 +36,33 @@ const Product = () => {
   });
 
   return (
-    <div className='product-page-container'>
-      <div
-        className='product-page-header'
-        style={{
-          backgroundImage: `url(${imageUrl}})`,
-        }}
-      >
-        <div className='product-page-body'>
-          <Link to='/' className='link'>
-            <LeftArrow fill='#fff' />
-          </Link>
-          <span className='header-title'>{productItem}</span>
+    <>
+      <div className='container'>
+        <div className='product-page-container'>
+          <div
+            className='product-page-header'
+            style={{
+              backgroundImage: `url(${imageUrl}})`,
+            }}
+          >
+            <div className='product-page-body'>
+              <Link to='/' className='link'>
+                <LeftArrow fill='#fff' />
+              </Link>
+              <span className='header-title'>{productItem}</span>
+            </div>
+          </div>
+          <div className='product-card-contianer'>
+            {products &&
+              products.map((product) => {
+                return <ProductCard key={product.id} product={product} />;
+              })}
+          </div>
+          <Offer />
         </div>
       </div>
-      <div className='product-card-contianer'>
-        {products &&
-          products.map((product) => {
-            return <ProductCard key={product.id} product={product} />;
-          })}
-      </div>
-      <Offer />
       <Footer />
-    </div>
+    </>
   );
 };
 

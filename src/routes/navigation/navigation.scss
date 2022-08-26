@@ -1,9 +1,14 @@
+.primary-header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  border-bottom: 1px solid #f2f2f2;
+}
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2.4rem 0;
-  border-bottom: 1px solid #f2f2f2;
   background: var(--color-white);
 
   &__logo {
@@ -13,6 +18,23 @@
   &__right-item {
     display: flex;
     gap: 8px;
+
+    .button-container {
+      position: relative;
+
+      .totalquantity {
+        padding: 0.5rem 0.9rem;
+        border-radius: 100px;
+        font-size: 1.3rem;
+        background: var(--color-orange-text);
+        color: var(--color-white);
+
+        position: absolute;
+        top: 0.25rem;
+        left: 0.25rem;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 
   .cart {

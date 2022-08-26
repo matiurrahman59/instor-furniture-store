@@ -27,6 +27,11 @@
 
       background-position: center;
       background-size: cover;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-10px);
+      }
 
       @media only screen and (max-width: 48em) {
         height: 32.6rem;

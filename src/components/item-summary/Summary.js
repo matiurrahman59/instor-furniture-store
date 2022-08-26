@@ -1,15 +1,31 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
+// action
+import { cartActions } from '../../store/cart.slice';
+
+// component
 import Button from '../button/Button';
 
+// style
 import './Summary.scss';
 
-const Summary = ({ price }) => {
+const Summary = ({ setModalactive }) => {
   const cartTotal = useSelector((state) => state.cart.totalPrice);
-
   const dCharge = cartTotal > 0 ? 10 : 0;
   const totalPrice = cartTotal + dCharge;
+
+  const dispatch = useDispatch();
+
+  const emptyCart = () => {
+    dispatch(cartActions.cartClear());
+  };
+
+  const confirmCheckout = (e) => {
+    e.preventDefault();
+    setModalactive();
+    emptyCart();
+  };
 
   return (
     <div className='item-summary-container'>
@@ -26,13 +42,36 @@ const Summary = ({ price }) => {
         <span>Total</span>
         <span className='totalPrice'>{totalPrice}</span>
       </div>
-      <form className='coupon-form'>
-        <input type='text' placeholder='Coupon code' />
-        <Button type='button' buttonType='login'>
-          Apply
-        </Button>
+      <form onSubmit={confirmCheckout}>
+        <div className='coupon-form'>
+          <input type='text' placeholder='Coupon code' />
+          <Button type='button' buttonType='login'>
+            Apply
+          </Button>
+        </div>
+        {cartTotal === 0 ? (
+          <Button
+            buttonType='checkout'
+            style={{
+              width: '100%',
+              marginTop: '20px',
+              opacity: '0.4',
+              cursor: 'not-allowed',
+            }}
+            disabled
+          >
+            Checkout
+          </Button>
+        ) : (
+          <Button
+            type='submit'
+            buttonType='checkout'
+            style={{ width: '100%', marginTop: '20px' }}
+          >
+            Checkout
+          </Button>
+        )}
       </form>
-      <Button buttonType='checkout'>Checkout</Button>
     </div>
   );
 };

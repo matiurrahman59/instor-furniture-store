@@ -8,22 +8,33 @@ import { ReactComponent as Sunny } from '../../assets/icons/sunny.svg';
 import { ReactComponent as Circle } from '../../assets/icons/circle.svg';
 
 import './Footer.scss';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className='footer-area'>
-      <div className='social-icon'>
-        <Insta />
-        <Pinterest />
-        <Youtube />
-      </div>
-      <span className='copyright-text'>@ Instor 2022</span>
-      <div className='ui-changer'>
-        <Moon fill='#969696' />
-        <span className='color-toggle-switch'>
-          <Circle />
-        </span>
-        <Sunny fill='#969696' />
+    <footer>
+      <div className='container'>
+        <div className='footer-area'>
+          <div className='social-icon'>
+            <Link to='/'>
+              <Insta />
+            </Link>
+            <Link to='/'>
+              <Pinterest />
+            </Link>
+            <Link to='/'>
+              <Youtube />
+            </Link>
+          </div>
+          <span className='copyright-text'>@ Instor 2022</span>
+          <div className='ui-changer'>
+            <Moon fill='#969696' />
+            <span className='color-toggle-switch'>
+              <Circle />
+            </span>
+            <Sunny fill='#969696' />
+          </div>
+        </div>
       </div>
     </footer>
   );

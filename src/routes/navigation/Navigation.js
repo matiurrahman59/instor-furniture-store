@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Outlet,
-  Link,
-  useNavigate,
-  useParams,
-  useLocation,
-} from 'react-router-dom';
+import { Outlet, Link, useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -47,44 +41,54 @@ const Navigation = () => {
   };
 
   return (
-    <div className='container'>
-      <header className='header'>
-        <Link to='/' className='header__logo'>
-          <InstorLogo />
-        </Link>
-        <form className='search-field'>
-          <span className='search-field-icon'>
-            <SearchIcon fill='rgba(0, 0, 0, 0.36)' />
-          </span>
-          <input
-            type='text'
-            className='search-field__input'
-            placeholder='WHat are you looking for?'
-          />
-        </form>
-        <div className='header__right-item'>
-          <Button
-            className='button-container cart'
-            onClick={() => navigate('checkout')}
-          >
-            <CartIcon fill='#e3964a' />
-            {totalQuantity > 0 && <span>{totalQuantity}</span>}
-          </Button>
-          {currentUser ? (
-            <Button className='button-container login' onClick={signOut}>
-              Sign Out
-            </Button>
-          ) : (
-            <Button onClick={setformVisible} className='button-container login'>
-              Sign In/Sign Up
-            </Button>
-          )}
+    <>
+      <div className='primary-header'>
+        <div className='container'>
+          <header className='header'>
+            <Link to='/' className='header__logo'>
+              <InstorLogo />
+            </Link>
+            <div className='search-field'>
+              <span className='search-field-icon'>
+                <SearchIcon fill='rgba(0, 0, 0, 0.36)' />
+              </span>
+              <input
+                type='text'
+                className='search-field__input'
+                placeholder='WHat are you looking for?'
+              />
+            </div>
+            <div className='header__right-item'>
+              <Button
+                className='button-container cart'
+                onClick={() => navigate('checkout')}
+              >
+                <CartIcon fill='#e3964a' />
+                Cart
+                {totalQuantity > 0 && (
+                  <span className='totalquantity'>{totalQuantity}</span>
+                )}
+              </Button>
+              {currentUser ? (
+                <Button className='button-container login' onClick={signOut}>
+                  Sign Out
+                </Button>
+              ) : (
+                <Button
+                  onClick={setformVisible}
+                  className='button-container login'
+                >
+                  Sign In/Sign Up
+                </Button>
+              )}
+            </div>
+            {isSignInFormVisible && <LogIn />}
+            {isSignUpFormVisible && <SignUp />}
+          </header>
         </div>
-        {isSignInFormVisible && <LogIn />}
-        {isSignUpFormVisible && <SignUp />}
-      </header>
+      </div>
       <Outlet />
-    </div>
+    </>
   );
 };
 

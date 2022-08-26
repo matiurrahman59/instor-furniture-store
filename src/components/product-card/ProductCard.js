@@ -1,11 +1,15 @@
 import React from 'react';
 
+// action
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cart.slice';
 
+// components
 import { ReactComponent as AddToCartIcon } from '../../assets/icons/addtocart.svg';
 import Button from '../button/Button';
+import { toast } from 'react-toastify';
 
+// style
 import './ProductCard.scss';
 
 const ProductCard = ({ product }) => {
@@ -13,6 +17,11 @@ const ProductCard = ({ product }) => {
 
   const dispatch = useDispatch();
   const addProductToCart = () => {
+    toast.success(`${name} was added to your cart`, {
+      autoClose: 1500,
+      hideProgressBar: true,
+      position: 'top-center',
+    });
     dispatch(cartActions.addItemToCart(product));
   };
 

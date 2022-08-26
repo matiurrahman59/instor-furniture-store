@@ -1,14 +1,13 @@
 import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
+// style
 import './CategoryItem.scss';
 
 const CategoryItem = ({ category }) => {
   const { title, imageUrl, route } = category;
 
   const navigate = useNavigate();
-
   const onNavigateHandler = () => navigate(route);
 
   return (

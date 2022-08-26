@@ -1,8 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
-
-import { CartContext } from '../../contexts/cart-context';
+import { useDispatch } from 'react-redux';
 
 import { ReactComponent as RemoveToCart } from '../../assets/icons/subtract.svg';
 import { ReactComponent as AddToCart } from '../../assets/icons/addtocart.svg';

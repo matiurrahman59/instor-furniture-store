@@ -1,9 +1,10 @@
 import React from 'react';
 
+// component
 import categories from '../../categories';
-
 import CategoryItem from '../category-item/CategoryItem';
 
+// style
 import './Category.scss';
 
 const category = () => {

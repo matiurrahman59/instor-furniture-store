@@ -1,0 +1,28 @@
+.modal {
+  &__body {
+    width: 39rem;
+    padding: 1.6rem;
+    padding-top: 2rem;
+    background: var(--color-white);
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      width: 50px;
+    }
+
+    button {
+      margin-top: 10px;
+      width: 100%;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #4d4d4d;
+      }
+    }
+  }
+}

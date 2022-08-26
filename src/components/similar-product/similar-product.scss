@@ -1,0 +1,24 @@
+.similar-product {
+  margin-top: 4.8rem;
+  .header-text {
+    font-size: 2.4rem;
+    font-weight: var(--fw-md);
+    color: var(--color-black);
+  }
+
+  .product-card-contianer {
+    margin-top: 2rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(276px, 1fr));
+    gap: 1.6rem;
+
+    @media only screen and (max-width: 56.25em) {
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+
+    @media only screen and (max-width: 29.375em) {
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+    }
+  }
+}

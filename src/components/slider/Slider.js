@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Pagination } from 'swiper';
+// component
+import { Pagination, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper';
 
+// style
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
 
 import './slider.scss';
 
@@ -38,9 +42,10 @@ const products = [
 const Slider = () => {
   return (
     <Swiper
-      // install Swiper modules
-      modules={[Pagination]}
+      modules={[Pagination, Navigation, Autoplay]}
       slidesPerView={1}
+      // navigation
+      // autoplay={true}
       pagination={{ clickable: true }}
     >
       {products.map(({ id, title, imageUrl, route }) => (
